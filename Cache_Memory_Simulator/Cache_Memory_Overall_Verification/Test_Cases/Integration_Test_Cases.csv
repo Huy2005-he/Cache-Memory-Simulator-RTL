@@ -1,0 +1,24 @@
+Test ID,Operation,Address,Expected Hit/Miss,Expected Data,Purpose
+TC01,READ,0x00,MISS,0x00,Cold miss and initial refill
+TC02,READ,0x00,HIT,0x00,Repeated read hit
+TC03,READ,0x01,HIT,0x01,Second byte in same block
+TC04,READ,0x08,MISS,0x08,Conflict miss same index different tag
+TC05,READ,0x00,MISS,0x00,Old block was replaced
+TC06,READ,0x02,MISS,0x02,Fill set 1
+TC07,READ,0x03,HIT,0x03,Second byte in set 1 block
+TC08,READ,0x04,MISS,0x04,Fill set 2
+TC09,READ,0x05,HIT,0x05,Second byte in set 2 block
+TC10,READ,0x06,MISS,0x06,Fill set 3
+TC11,READ,0x07,HIT,0x07,Second byte in set 3 block
+TC12,READ,0x02,HIT,0x02,Set residency check
+TC13,WRITE,0x02,HIT,0xA6,Write hit with write-through
+TC14,READ,0x02,HIT,0xA6,Read updated cache byte
+TC15,READ,0x03,HIT,0x03,Verify adjacent byte not corrupted
+TC16,READ,0x0A,MISS,0x0A,Replace set 1 block
+TC17,READ,0x02,MISS,0xA6,Verify write-through after refill
+TC18,WRITE,0x12,MISS,0x5C,Write miss with no-write-allocate
+TC19,READ,0x12,MISS,0x5C,Write miss did not allocate cache line
+TC20,READ,0x12,HIT,0x5C,Read hit after refill
+TC21,READ,0x00,HIT,0x00,Independent set 0 remains resident
+TC22,READ,0x04,HIT,0x04,Independent set 2 remains resident
+TC23,READ,0x06,HIT,0x06,Independent set 3 remains resident
