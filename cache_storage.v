@@ -1,6 +1,4 @@
 
-`timescale 1ns/1ps
-
 module cache_storage (
     input wire clk,
     input wire reset,
